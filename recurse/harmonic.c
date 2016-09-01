@@ -2,16 +2,19 @@
 
 
 float harmonic(int n);
+float tail_harmonic(int n, float a);
 
 int main(int argc, char** argv){
-	int a;
+	int n;
 	float ans;
 
     printf("Enter a number n: ");
-    scanf("%u", &a);
+    scanf("%u", &n);
 
-	ans = harmonic(a);
-	printf("Harmonic series of %i is %f\n", a, ans);
+	ans = harmonic(n);
+	printf("Harmonic series of %i is %f\n", n, ans);
+	ans = tail_harmonic(n, 0);
+	printf("Tail Harmonic series of %i is %f\n", n, ans);
 
 }
 
@@ -22,5 +25,14 @@ float harmonic(int n){
 		return 1;
 	} else {
 		return harmonic(n - 1) + (1 / (float)n);
+	}
+}
+
+float tail_harmonic(int n, float a){
+	// Compute factorial recursively
+	if (n <= 1){
+		return a + 1;
+	} else {
+		return tail_harmonic(n - 1, a + (1 / (float)n));
 	}
 }
